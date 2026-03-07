@@ -1,0 +1,209 @@
+/* Theme variables */
+html[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --text: #c8c8c8;
+  --muted: #707070;
+  --border: #222;
+  --topbar-bg: rgba(15, 15, 15, 0.85);
+  --card-bg: #1a1a1a;
+}
+
+html[data-theme="light"] {
+  --bg: #f7f4ef;
+  --text: #2a2725;
+  --muted: #8a8580;
+  --border: #e0dcd5;
+  --topbar-bg: rgba(247, 244, 239, 0.85);
+  --card-bg: #ffffff;
+}
+
+/* Font size variables */
+html[data-fontsize="small"]  { --passage-size: 0.9rem;  --header-size: 1.05rem; }
+html[data-fontsize="medium"] { --passage-size: 1.05rem; --header-size: 1.2rem;  }
+html[data-fontsize="large"]  { --passage-size: 1.25rem; --header-size: 1.4rem;  }
+html[data-fontsize="xlarge"] { --passage-size: 1.45rem; --header-size: 1.6rem;  }
+html[data-fontsize="vlarge"] { --passage-size: 1.7rem;  --header-size: 1.85rem; }
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lora', 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Topbar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.25rem;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.topbar-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+}
+
+.scroll-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 0.35rem;
+  color: var(--muted);
+}
+
+.tm {
+  font-size: 0.5em;
+  font-weight: 400;
+  color: var(--muted);
+  vertical-align: super;
+  margin-left: 0.1rem;
+}
+
+.topbar-tagline {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.read-counter {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+#font-size-select {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+  outline: none;
+}
+
+#theme-toggle {
+  font-size: 1.1rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.15rem 0.4rem;
+  line-height: 1;
+}
+
+#theme-toggle:hover,
+#font-size-select:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+/* Feed */
+#feed {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 0;
+}
+
+/* Passage cards */
+.passage-card {
+  background: var(--card-bg);
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.3s ease both;
+}
+
+.passage-card .passage-header {
+  font-family: 'Lora', 'Source Serif 4', Georgia, serif;
+  font-size: var(--header-size);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.passage-card .passage-text {
+  font-size: var(--passage-size);
+  line-height: 1.75;
+  color: var(--text);
+  transition: font-size 0.2s;
+}
+
+.passage-card .passage-text p + p {
+  margin-top: 0.75em;
+}
+
+.passage-card .passage-ref {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: calc(var(--passage-size) * 0.8);
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* Sentinel */
+#sentinel {
+  height: 1px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar (subtle) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
