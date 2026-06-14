@@ -177,4 +177,12 @@
   }
 
   init();
+
+  // Register the service worker for offline reading + installability.
+  // Non-fatal: the site works normally if this fails or is unsupported.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
 })();

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f0e4"/>
+      <stop offset="1" stop-color="#e7dcc6"/>
+    </linearGradient>
+    <linearGradient id="sheet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdfaf3"/>
+      <stop offset="1" stop-color="#f4ecdb"/>
+    </linearGradient>
+    <linearGradient id="roll" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9dcc0"/>
+      <stop offset="0.5" stop-color="#f3ead6"/>
+      <stop offset="1" stop-color="#dccbaa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Parchment background (OS applies its own rounding/masking) -->
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Scroll -->
+  <g stroke="#b9a982" stroke-width="4">
+    <!-- Sheet -->
+    <rect x="150" y="150" width="212" height="212" rx="6" fill="url(#sheet)"/>
+
+    <!-- Top roll -->
+    <rect x="128" y="118" width="256" height="48" rx="24" fill="url(#roll)"/>
+    <ellipse cx="152" cy="142" rx="13" ry="20" fill="#d8c8a6"/>
+    <ellipse cx="360" cy="142" rx="13" ry="20" fill="#d8c8a6"/>
+
+    <!-- Bottom roll -->
+    <rect x="128" y="346" width="256" height="48" rx="24" fill="url(#roll)"/>
+    <ellipse cx="152" cy="370" rx="13" ry="20" fill="#d8c8a6"/>
+    <ellipse cx="360" cy="370" rx="13" ry="20" fill="#d8c8a6"/>
+  </g>
+
+  <!-- Text lines (passages) -->
+  <g fill="#7c6f57">
+    <rect x="178" y="186" width="156" height="11" rx="5.5"/>
+    <rect x="178" y="214" width="120" height="11" rx="5.5"/>
+    <rect x="178" y="242" width="156" height="11" rx="5.5"/>
+    <rect x="178" y="270" width="100" height="11" rx="5.5"/>
+    <rect x="178" y="298" width="156" height="11" rx="5.5"/>
+    <rect x="178" y="326" width="134" height="11" rx="5.5"/>
+  </g>
+</svg>
