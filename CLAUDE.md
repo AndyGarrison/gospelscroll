@@ -15,9 +15,12 @@ Infinite-scroll Gospel reader at **gospelscroll.app**. Displays passages from al
 ```
 server.js              Express server, serves static files + JSON data
 public/
-  index.html           Single-page app shell
+  index.html           Single-page app shell (includes PWA head tags)
   css/style.css        All styles, theme variables, card layout
-  js/app.js            Client logic: shuffle, infinite scroll, settings, read counter
+  js/app.js            Client logic: shuffle, infinite scroll, settings, read counter, SW registration
+  manifest.json        PWA web app manifest (name, icons, colors, standalone display)
+  sw.js                Service worker: offline caching of app shell + passages
+  icons/               App icons (scroll motif): icon.svg + maskable.svg masters, generated PNGs
 data/
   gospels.json         All 443 passages with paragraph breaks (\n\n)
 source-text/           Raw WEB-C Gospel chapter files (source material)
@@ -42,3 +45,15 @@ Passages come from the **World English Bible (WEB)** public domain translation. 
 - Five font size options (persisted in localStorage)
 - Session read counter (increments as cards scroll into view, resets on refresh)
 - Cards show: title → scripture reference → passage text with paragraph spacing
+- **PWA**: installable ("Add to Home Screen"), runs standalone, and works fully offline. Plain website behavior at gospelscroll.app is unchanged — PWA features are purely additive.
+
+## PWA / Offline
+
+The service worker (`public/sw.js`) precaches the app shell + all of `data/gospels.json` + icons on install, so the entire feed works offline (e.g. on a plane) after the first online visit. App shell and data use a stale-while-revalidate strategy; Google Fonts are runtime cached. `server.js` sends `Cache-Control: no-cache` for `sw.js` and `manifest.json` so deploys propagate promptly.
+
+**IMPORTANT — when changing `data/gospels.json` or the app shell (HTML/CSS/JS):** bump `CACHE_VERSION` in `public/sw.js` (e.g. `'v1'` → `'v2'`) before pushing, so installed users get a clean update instead of a stale cached copy.
+
+Icons are generated from the SVG masters in `public/icons/` via `sips` (macOS), e.g.:
+```
+sips -s format png icon.svg --out icon-512.png -Z 512
+```
